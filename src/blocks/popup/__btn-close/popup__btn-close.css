@@ -1,0 +1,17 @@
+.popup__btn-close {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  background: url('../../../images/btn/btn_plus.svg') center no-repeat;
+  background-size: 100%;
+  width: 40px;
+  height: 40px;
+  transform: rotate(45deg);
+}
+
+@media screen and (max-width: 508px) {
+  .popup__btn-close {
+    justify-self: end;
+    width: 30px;
+    height: 30px;
+  }
+}

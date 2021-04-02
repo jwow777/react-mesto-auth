@@ -13,8 +13,6 @@ function Register({setIsSuccessRegistration, setIsErrorRegistration, history}) {
   function handleSubmit(e) {
     e.preventDefault();
     if (email, password) {
-      setEmail(email);
-      setPassword(password);
       register(email, password).then(res => {
         if (res) {
           setIsSuccessRegistration(true);

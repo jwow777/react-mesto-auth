@@ -69,7 +69,9 @@ function App(props) {
 
   function handleUpdateAvatar(userData) {
     api.setUserAvatar(userData)
-    .then(res => setCurrentUser(res))
+    .then(res => {
+      setCurrentUser(res);
+    })
     .catch(err => console.log(err));
   }
 
@@ -111,12 +113,17 @@ function App(props) {
   useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token) {
-      getContent(token).then(res => {
-        if (res) {
-          setLoggedIn(true);
-          props.history.push('/');
-        }
-      })
+      getContent(token)
+        .then(res => {
+          if (res) {
+            setLoggedIn(true);
+            props.history.push('/');
+          }
+        })
+        .catch(err => {
+          localStorage.removeItem('jwt');
+          console.log(err);
+        })
     };
   }, []);
 

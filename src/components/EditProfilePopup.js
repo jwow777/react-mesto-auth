@@ -22,10 +22,11 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    onUpdateUser({name, about:description});
-    onClose();
-    setName('');
-    setDescription('');
+    onUpdateUser({name, about:description}).then(() => {
+      onClose();
+      setName('');
+      setDescription('');
+    })
   }
 
   return (

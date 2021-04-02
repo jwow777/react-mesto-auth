@@ -15,10 +15,11 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    onAddPlace({name, link});
-    onClose();
-    setName('');
-    setLink('');
+    onAddPlace({name, link}).then(() => {
+      onClose();
+      setName('');
+      setLink('');
+    })
   }
 
   return (

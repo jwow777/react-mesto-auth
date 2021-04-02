@@ -16,7 +16,7 @@ import ProtectRoute from "./ProtectedRoute";
 import {getContent} from "./Auth";
 import InfoTooltip from './InfoTooltip';
 
-function App(props) {
+function App({history}) {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
@@ -62,17 +62,15 @@ function App(props) {
 
   // Обновление данных пользователя
   function handleUpdateUser(userData) {
-    api.setUserInfo(userData)
-    .then(res => setCurrentUser(res))
-    .catch(err => console.log(err));
+    return api.setUserInfo(userData)
+            .then(res => setCurrentUser(res))
+            .catch(err => console.log(err));
   }
 
   function handleUpdateAvatar(userData) {
-    api.setUserAvatar(userData)
-    .then(res => {
-      setCurrentUser(res);
-    })
-    .catch(err => console.log(err));
+    return api.setUserAvatar(userData)
+            .then(res => setCurrentUser(res))
+            .catch(err => console.log(err));
   }
 
   useEffect(() => 
@@ -98,16 +96,16 @@ function App(props) {
 
   // Добавление карточки
   function handleAddPlace(cardData) {
-    api.postCard(cardData)
-    .then(newCard => setCards([newCard, ...cards]))
-    .catch(err => console.log(err));
+    return api.postCard(cardData)
+            .then(newCard => setCards([newCard, ...cards]))
+            .catch(err => console.log(err));
   }
 
   // Удаление карточки
   function handleCardDelete(card) {
-    api.deleteCard(card._id)
-    .then(() => setCards(cards.filter(c => c._id !== card._id)))
-    .catch(err => console.log(err));
+    return api.deleteCard(card._id)
+            .then(() => setCards(cards.filter(c => c._id !== card._id)))
+            .catch(err => console.log(err));
   }
 
   useEffect(() => {
@@ -117,7 +115,7 @@ function App(props) {
         .then(res => {
           if (res) {
             setLoggedIn(true);
-            props.history.push('/');
+            history.push('/');
           }
         })
         .catch(err => {
@@ -133,7 +131,7 @@ function App(props) {
 
   function closeSuccessToolTip() {
     setIsSuccessRegistration(false);
-    props.history.push('/sign-in');
+    history.push('/sign-in');
   }
 
   function closeErrorToolTip() {

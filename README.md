@@ -22,4 +22,8 @@
 
 ---
 
+![1](https://user-images.githubusercontent.com/52472108/127466402-d37dd139-6a8c-4a6c-b56b-295403190da8.png)
+
+---
+
 [Посмотреть работу](https://jwow777.github.io/react-mesto-auth/)
